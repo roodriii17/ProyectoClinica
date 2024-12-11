@@ -35,9 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Login</title>
-    <!-- CSS para estilizar el login -->
+    
     <style>
-        /* Resetear márgenes y paddings */
+      
         * {
             margin: 0;
             padding: 0;
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-weight: 600;
         }
 
-        /* Estilos de los campos de entrada */
+        
         input[type="text"],
         input[type="password"] {
             width: 100%;
@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background-color: #f9f9f9;
         }
 
-        /* Efecto en el foco de los campos */
+        
         input[type="text"]:focus,
         input[type="password"]:focus {
             border-color: #3498db;

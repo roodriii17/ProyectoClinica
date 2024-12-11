@@ -8,7 +8,7 @@ class AuthController {
 
     // Mostrar formulario de login
     public function loginAction() {
-        session_start();  // Asegurarse de que la sesión se inicie antes de hacer cualquier cosa
+        session_start();  
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Validar el formulario
@@ -29,21 +29,20 @@ class AuthController {
             } else {
                 // Si las credenciales son incorrectas
                 $error = "Usuario o contraseña incorrectos";
-                require_once __DIR__ . '/../views/login.php'; // Mostrar de nuevo el formulario de login con error
+                require_once __DIR__ . '/../views/login.php'; 
                 return;
             }
         }
 
-        // Si no es un POST, mostramos el formulario de login
+        
         require_once __DIR__ . '/../views/login.php';
     }
 
     // Cerrar sesión
     public function logoutAction() {
         session_start();
-        session_destroy();  // Destruir la sesión
-        header('Location: login'); // Redirige al login después de cerrar sesión
-        exit;
+        session_destroy();  
+        header('Location: login'); 
     }
 }
 ?>

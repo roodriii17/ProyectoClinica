@@ -4,88 +4,91 @@ session_start();
 
 // Verificar si el usuario está autenticado, si no, redirigir al login
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: /ProyectoClinica/public/login.php');
+
+
+
 
     exit();
 }
 
-require_once __DIR__ . '/config/database.php';  // Ajuste la ruta al archivo de configuración
+require_once __DIR__ . '/config/database.php';  
 require_once __DIR__ . '/app/Controllers/CitaController.php';
 require_once __DIR__ . '/app/Controllers/DoctorController.php';
 require_once __DIR__ . '/app/Controllers/PacienteController.php';
 
 
-// Obtener la conexión PDO usando la clase Database
+
 $pdo = Database::getConnection();
 
-// Inicializar los controladores
+
 $doctorController = new DoctorController($pdo); 
 $pacienteController = new PacienteController($pdo); 
 $citaController = new CitaController($pdo); 
 
-// Verificar qué acción se solicita
+
 $action = isset($_GET['action']) ? $_GET['action'] : 'inicio'; 
 
-// Ejecutar la acción correspondiente
+
 switch ($action) {
     // Acciones relacionadas con doctores
     case 'doctores':
-        $doctorController->listarAction(); // Acción para listar doctores
+        $doctorController->listarAction(); 
         break;
     case 'agregarDoctorForm':
-        $doctorController->agregarDoctorForm(); // Acción para mostrar formulario de agregar doctor
+        $doctorController->agregarDoctorForm(); 
         break;
     case 'agregarDoctor':
-        $doctorController->agregarAction(); // Acción para agregar un doctor
+        $doctorController->agregarAction(); 
         break;
     case 'editarDoctor':
-        $doctorController->editarAction(); // Acción para editar un doctor
+        $doctorController->editarAction(); 
         break;
     case 'actualizarDoctor':
-        $doctorController->actualizarAction(); // Acción para actualizar un doctor
+        $doctorController->actualizarAction(); 
         break;
     case 'eliminarDoctor':
-        $doctorController->eliminarAction(); // Acción para eliminar un doctor
+        $doctorController->eliminarAction(); 
         break;
 
     // Acciones relacionadas con pacientes
     case 'pacientes':
-        $pacienteController->listarAction(); // Acción para listar pacientes
+        $pacienteController->listarAction(); 
         break;
     case 'agregarPacienteForm':
-        $pacienteController->agregarPacienteForm(); // Acción para mostrar formulario de agregar paciente
+        $pacienteController->agregarPacienteForm(); 
         break;
     case 'agregarPaciente':
-        $pacienteController->agregarAction(); // Acción para agregar un paciente
+        $pacienteController->agregarAction(); 
         break;
     case 'editarPaciente':
-        $pacienteController->editarAction(); // Acción para editar un paciente
+        $pacienteController->editarAction(); 
         break;
     case 'actualizarPaciente':
-        $pacienteController->actualizarAction(); // Acción para actualizar un paciente
+        $pacienteController->actualizarAction(); 
         break;
     case 'eliminarPaciente':
-        $pacienteController->eliminarAction(); // Acción para eliminar un paciente
+        $pacienteController->eliminarAction(); 
         break;
 
     // Acciones relacionadas con citas
     case 'citas':
-        $citaController->listarCitas(); // Acción para listar citas
+        $citaController->listarCitas(); 
         break;
     case 'agendarCitaForm':
-        $citaController->agendarCitaForm(); // Acción para mostrar formulario de agendar cita
+        $citaController->agendarCitaForm(); 
         break;
     case 'agendarCita':
-        $citaController->agendarAction(); // Acción para agendar una cita
+        $citaController->agendarAction(); 
         break;
     case 'editarCitaForm':
-        $citaController->editarCitaForm(); // Acción para mostrar formulario de editar cita
+        $citaController->editarCitaForm(); 
         break;
     case 'actualizarCita':
-        $citaController->actualizarCita(); // Acción para actualizar cita
+        $citaController->actualizarCita(); 
         break;
     case 'eliminarCita':
-        $citaController->eliminarCita(); // Acción para eliminar una cita
+        $citaController->eliminarCita(); 
         break;
 
     // Página principal de inicio
@@ -97,9 +100,9 @@ switch ($action) {
         echo "<a href='?action=agendarCitaForm'>Agendar Cita</a><br>";
         break;
     
-    // Acción por defecto si no se encuentra la ruta
+    
     default:
-        echo "Acción no encontrada"; // Mensaje si la acción no es válida
+        echo "Acción no encontrada"; 
         break;
 }
 
@@ -110,7 +113,7 @@ switch ($action) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clínica - Gestión de Citas</title>
-    <!-- Vincular el archivo CSS -->
-    <link rel="stylesheet" href="../ProyectoClinica/public/css/styles.css"> <!-- Asegúrate de tener este archivo CSS en la carpeta 'css' -->
+   
+    <link rel="stylesheet" href="../ProyectoClinica/public/css/styles.css"> 
 </head>
 

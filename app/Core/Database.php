@@ -15,8 +15,8 @@ class Database {
         try {
             $this->connection = new PDO(
                 'mysql:host=127.0.0.1;dbname=clinica;charset=utf8mb4',
-                'root', // Usuario de base de datos
-                '', // Contraseña de base de datos
+                'root', 
+                '', 
                 [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
             );
         } catch (PDOException $e) {
@@ -24,7 +24,7 @@ class Database {
         }
     }
 
-    // Método estático para obtener la instancia de la conexión
+    
     public static function connect() {
         if (self::$instance === null) {
             self::$instance = new self();
@@ -32,9 +32,8 @@ class Database {
         return self::$instance->connection;
     }
 
-    // Prevenir la clonación de la instancia
+  
     private function __clone() {}
 
-    // Prevenir la deserialización
     public function __wakeup() {}
 }

@@ -24,22 +24,21 @@ class CitaController {
             $stmtDoctor->execute();
             $doctor = $stmtDoctor->fetch(PDO::FETCH_ASSOC);
 
-            // Mostramos la cita
+         
             echo "<p>Paciente: " . $paciente['nombre'] . " | Doctor: " . $doctor['nombre'] . " | Fecha: " . $cita['fecha'] . " | Hora: " . $cita['hora'] . "</p>";
-            // Enlace para editar la cita
+            
             echo "<a href='?action=editarCita&id=" . $cita['id'] . "'>Editar</a> | ";
             echo "<a href='?action=eliminarCita&id=" . $cita['id'] . "'>Eliminar</a><br>";
         }
 
-        // Enlace para agregar una nueva cita
-       // Enlace para agregar una nueva cita
+        
         echo '<br><a href="?action=agendarCitaForm">Agendar Cita</a>';
 
-        // Enlace para volver al inicio
+       
         echo '<br><a href="?action=inicio">Volver al Inicio</a>';
     }
 
-    // Acción para mostrar el formulario de agendar una cita
+   
     public function agendarCitaForm() {
         // Obtener la lista de doctores y pacientes
         $stmtDoctor = $this->pdo->query("SELECT * FROM doctores WHERE activo = 1");
@@ -109,14 +108,14 @@ class CitaController {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
 
-            // Obtener los datos de la cita por su ID
+            
             $stmt = $this->pdo->prepare("SELECT * FROM citas WHERE id = :id");
             $stmt->bindParam(':id', $id);
             $stmt->execute();
             $cita = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($cita) {
-                // Obtener los pacientes y doctores
+               
                 $stmtPaciente = $this->pdo->query("SELECT * FROM pacientes WHERE activo = 1");
                 $pacientes = $stmtPaciente->fetchAll(PDO::FETCH_ASSOC);
 
@@ -158,7 +157,7 @@ public function actualizarCita() {
         $fecha = $_POST['fecha'];
         $hora = $_POST['hora'];
 
-        // Validar si ya existe una cita con el mismo doctor y la misma fecha y hora
+        
         $stmt = $this->pdo->prepare("SELECT * FROM citas WHERE doctor_id = :doctor_id AND fecha = :fecha AND hora = :hora AND id != :id");
         $stmt->bindParam(':doctor_id', $doctor_id);
         $stmt->bindParam(':fecha', $fecha);
